@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+    <link href="https://vjs.zencdn.net/7.11.4/video-js.css" rel="stylesheet" />
+
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Dots&display=swap" rel="stylesheet">
+    <script src="https://vjs.zencdn.net/7.11.4/video.min.js"></script>
+    <!-- videojs-contrib-dash script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/videojs-contrib-dash/4.1.0/videojs-dash.min.js"
+        integrity="sha512-qjIEidadZHCfTg1W/XY2gopFBBuuFlk8ZDlcSKmBsj8FUjG+FjzigLaFlN0k7DncPBrNBtMkRV1kYZtpWKyw+g=="
+        crossorigin="anonymous"></script>
+    <!-- Dash.js -->
+    <script src="videojs.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/videojs-contrib-quality-levels@2.0.9/dist/videojs-contrib-quality-levels.min.js"></script>
+    <script src="https://sahilkashyap64.github.io/dash-player-buydrm/dist/videojs-http-source-selector.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-eme@3.7.0/dist/videojs-contrib-eme.cjs.min.js"></script>
+
+    <script src="https://players.brightcove.net/videojs-overlay/2/videojs-overlay.min.js"></script>
+    <link href="https://players.brightcove.net/videojs-overlay/2/videojs-overlay.css" rel="stylesheet">
+    <title>Alwazir</title>
+    <style>
+        .video-js .vjs-menu-button-inline.vjs-slider-active,
+        .video-js .vjs-menu-button-inline:focus,
+        .video-js .vjs-menu-button-inline:hover,
+        .video-js.vjs-no-flex .vjs-menu-button-inline {
+            width: 10em
+        }
+
+        .video-js .vjs-controls-disabled .vjs-big-play-button {
+            display: none !important
+        }
+
+        .video-js .vjs-control {
+            width: 3em
+        }
+
+        .video-js .vjs-menu-button-inline:before {
+            width: 1.5em
+        }
+
+        .vjs-menu-button-inline .vjs-menu {
+            left: 3em
+        }
+
+        .video-js.vjs-paused .vjs-big-play-button,
+        .vjs-paused.vjs-has-started.video-js .vjs-big-play-button {
+            display: block
+        }
+
+        .video-js .vjs-load-progress div,
+        .vjs-seeking .vjs-big-play-button,
+        .vjs-waiting .vjs-big-play-button {
+            display: none !important
+        }
+
+        .video-js .vjs-mouse-display:after,
+        .video-js .vjs-play-progress:after {
+            padding: 0 .4em .3em
+        }
+
+        .video-js.vjs-ended .vjs-loading-spinner {
+            display: none
+        }
+
+        .video-js.vjs-ended .vjs-big-play-button {
+            display: block !important
+        }
+
+        .video-js *,
+        .video-js:after,
+        .video-js:before {
+            box-sizing: inherit;
+            font-size: inherit;
+            color: inherit;
+            line-height: inherit
+        }
+
+        .video-js.vjs-fullscreen,
+        .video-js.vjs-fullscreen .vjs-tech {
+            width: 100% !important;
+            height: 100% !important
+        }
+
+        .video-js {
+            font-size: 14px;
+            overflow: hidden
+        }
+
+        .video-js .vjs-control {
+            color: inherit
+        }
+
+        .video-js .vjs-menu-button-inline:hover,
+        .video-js.vjs-no-flex .vjs-menu-button-inline {
+            width: 8.35em
+        }
+
+        .video-js .vjs-volume-menu-button.vjs-volume-menu-button-horizontal:hover .vjs-menu .vjs-menu-content {
+            height: 3em;
+            width: 6.35em
+        }
+
+        .video-js .vjs-control:focus:before,
+        .video-js .vjs-control:hover:before {
+            text-shadow: 0 0 1em #fff, 0 0 1em #fff, 0 0 1em #fff
+        }
+
+        .video-js .vjs-spacer,
+        .video-js .vjs-time-control {
+            display: -webkit-box;
+            display: -moz-box;
+            display: -ms-flexbox;
+            display: -webkit-flex;
+            display: flex;
+            -webkit-box-flex: 1 1 auto;
+            -moz-box-flex: 1 1 auto;
+            -webkit-flex: 1 1 auto;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto
+        }
+
+        .video-js .vjs-time-control {
+            -webkit-box-flex: 0 1 auto;
+            -moz-box-flex: 0 1 auto;
+            -webkit-flex: 0 1 auto;
+            -ms-flex: 0 1 auto;
+            flex: 0 1 auto;
+            width: auto
+        }
+
+        .video-js .vjs-time-control.vjs-time-divider {
+            width: 14px
+        }
+
+        .video-js .vjs-time-control.vjs-time-divider div {
+            width: 100%;
+            text-align: center
+        }
+
+        .video-js .vjs-time-control.vjs-current-time {
+            margin-left: 1em
+        }
+
+        .video-js .vjs-time-control .vjs-current-time-display,
+        .video-js .vjs-time-control .vjs-duration-display {
+            width: 100%
+        }
+
+        .video-js .vjs-time-control .vjs-current-time-display {
+            text-align: right
+        }
+
+        .video-js .vjs-time-control .vjs-duration-display {
+            text-align: left
+        }
+
+        .video-js .vjs-play-progress:before,
+        .video-js .vjs-progress-control .vjs-play-progress:before,
+        .video-js .vjs-remaining-time,
+        .video-js .vjs-volume-level:after,
+        .video-js .vjs-volume-level:before,
+        .video-js.vjs-live .vjs-time-control.vjs-current-time,
+        .video-js.vjs-live .vjs-time-control.vjs-duration,
+        .video-js.vjs-live .vjs-time-control.vjs-time-divider,
+        .video-js.vjs-no-flex .vjs-time-control.vjs-remaining-time {
+            display: none;
+            font-size: 20px;
+            font-family: 'Noisy Walk', cursive;
+        }
+
+        .video-js.vjs-no-flex .vjs-time-control {
+            display: table-cell;
+            width: 4em
+        }
+
+        .video-js .vjs-progress-control {
+            position: absolute;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: .5em;
+            top: -.5em
+        }
+
+        .video-js .vjs-progress-control .vjs-load-progress,
+        .video-js .vjs-progress-control .vjs-play-progress,
+        .video-js .vjs-progress-control .vjs-progress-holder {
+            height: 100%
+        }
+
+        .video-js .vjs-progress-control .vjs-progress-holder {
+            margin: 0
+        }
+
+        .video-js .vjs-progress-control:hover {
+            height: 1.5em;
+            top: -1.5em
+        }
+
+        .video-js .vjs-control-bar {
+            -webkit-transition: -webkit-transform .1s ease 0s;
+            -moz-transition: -moz-transform .1s ease 0s;
+            -ms-transition: -ms-transform .1s ease 0s;
+            -o-transition: -o-transform .1s ease 0s;
+            transition: transform .1s ease 0s
+        }
+
+        .video-js.not-hover.vjs-has-started.vjs-paused.vjs-user-active .vjs-control-bar,
+        .video-js.not-hover.vjs-has-started.vjs-paused.vjs-user-inactive .vjs-control-bar,
+        .video-js.not-hover.vjs-has-started.vjs-playing.vjs-user-active .vjs-control-bar,
+        .video-js.not-hover.vjs-has-started.vjs-playing.vjs-user-inactive .vjs-control-bar,
+        .video-js.vjs-has-started.vjs-playing.vjs-user-inactive .vjs-control-bar {
+            visibility: visible;
+            opacity: 1;
+            -webkit-backface-visibility: hidden;
+            -webkit-transform: translateY(3em);
+            -moz-transform: translateY(3em);
+            -ms-transform: translateY(3em);
+            -o-transform: translateY(3em);
+            transform: translateY(3em);
+            -webkit-transition: -webkit-transform 1s ease 0s;
+            -moz-transition: -moz-transform 1s ease 0s;
+            -ms-transition: -ms-transform 1s ease 0s;
+            -o-transition: -o-transform 1s ease 0s;
+            transition: transform 1s ease 0s
+        }
+
+        .video-js.not-hover.vjs-has-started.vjs-paused.vjs-user-active .vjs-progress-control,
+        .video-js.not-hover.vjs-has-started.vjs-paused.vjs-user-inactive .vjs-progress-control,
+        .video-js.not-hover.vjs-has-started.vjs-playing.vjs-user-active .vjs-progress-control,
+        .video-js.not-hover.vjs-has-started.vjs-playing.vjs-user-inactive .vjs-progress-control,
+        .video-js.vjs-has-started.vjs-playing.vjs-user-inactive .vjs-progress-control {
+            height: .25em;
+            top: -.25em;
+            pointer-events: none;
+            -webkit-transition: height 1s, top 1s;
+            -moz-transition: height 1s, top 1s;
+            -ms-transition: height 1s, top 1s;
+            -o-transition: height 1s, top 1s;
+            transition: height 1s, top 1s
+        }
+
+        .video-js.not-hover.vjs-has-started.vjs-paused.vjs-user-active.vjs-fullscreen .vjs-progress-control,
+        .video-js.not-hover.vjs-has-started.vjs-paused.vjs-user-inactive.vjs-fullscreen .vjs-progress-control,
+        .video-js.not-hover.vjs-has-started.vjs-playing.vjs-user-active.vjs-fullscreen .vjs-progress-control,
+        .video-js.not-hover.vjs-has-started.vjs-playing.vjs-user-inactive.vjs-fullscreen .vjs-progress-control,
+        .video-js.vjs-has-started.vjs-playing.vjs-user-inactive.vjs-fullscreen .vjs-progress-control {
+            opacity: 0;
+            -webkit-transition: opacity 1s ease 1s;
+            -moz-transition: opacity 1s ease 1s;
+            -ms-transition: opacity 1s ease 1s;
+            -o-transition: opacity 1s ease 1s;
+            transition: opacity 1s ease 1s
+        }
+
+        .video-js.vjs-live .vjs-live-control {
+            margin-left: 1em
+        }
+
+        .video-js .vjs-big-play-button {
+            top: 50%;
+            left: 50%;
+            margin-left: -1em;
+            width: 2em;
+            border: none;
+            color: #fff;
+            -webkit-transition: border-color .4s, outline .4s, background-color .4s;
+            -moz-transition: border-color .4s, outline .4s, background-color .4s;
+            -ms-transition: border-color .4s, outline .4s, background-color .4s;
+            -o-transition: border-color .4s, outline .4s, background-color .4s;
+            transition: border-color .4s, outline .4s, background-color .4s;
+            background-color: rgba(0, 0, 0, .45);
+            font-size: 3.5em;
+            border-radius: 50%;
+            height: 2em !important;
+            line-height: 2em !important;
+            margin-top: -1em !important
+        }
+
+        .video-js .vjs-menu-button-popup .vjs-menu {
+            left: -3em
+        }
+
+        .video-js .vjs-menu-button-popup .vjs-menu .vjs-menu-content {
+            background-color: transparent;
+            width: 12em;
+            left: -1.5em;
+            padding-bottom: .5em
+        }
+
+        .video-js .vjs-menu-button-popup .vjs-menu .vjs-menu-item,
+        .video-js .vjs-menu-button-popup .vjs-menu .vjs-menu-title {
+            background-color: #151b17;
+            margin: .3em 0;
+            padding: .5em;
+            border-radius: .3em
+        }
+
+        .video-js .vjs-menu-button-popup .vjs-menu .vjs-menu-item.vjs-selected {
+            background-color: rgba(36, 131, 213, .8)
+        }
+
+        .video-js .vjs-big-play-button:active,
+        .video-js .vjs-big-play-button:focus,
+        .video-js:hover .vjs-big-play-button {
+            background-color: #5e2e94
+        }
+
+        .video-js .vjs-loading-spinner {
+            border-color: #5e2e94
+        }
+
+        .video-js .vjs-control-bar2 {
+            background-color: #000
+        }
+
+        .video-js .vjs-control-bar {
+            background-color: rgba(0, 0, 0, .3) !important;
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .video-js .vjs-play-progress,
+        .video-js .vjs-volume-level {
+            background-color: #2483d5
+        }
+
+        .vjs-custom-control-spacer:after {
+            content: "ALWAZIR CONNECT";
+            line-height: 3.1em;
+            font-family: 'Noisy Walk', cursive;
+            position: absolute;
+            right: 190;
+            text-shadow: 2px 2px 8px #f3f3f3
+        }
+
+        .video-js.vjs-http-source-selector {
+            display: block
+        }
+
+        /* captions/subtitles container */
+        .vjs-text-track-display {
+            position: absolute !important;
+            left: 600px !important;
+            top: 10px !important;
+            width: 50px;
+            display: block;
+            z-index: 10000000 !important;
+             font-size: 12px;
+            
+        }
+    </style>
+    <style>
+        .videoInsert {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            background-size: cover;
+            overflow: hidden;
+        }
+
+        .video-js .customOverlay {
+            color: yellow;
+            background-color: transparent;
+             font-size: 12px;
+        }
+
+        .vjs-overlay.vjs-overlay-top.vjs-overlay-background {
+            width: 100 %;
+            margin: auto;
+            left: 0;
+            background: none;
+        }
+    </style>
+</head>
+
+<body style="overflow: hidden !important;">
+    <div id="videoContainer">
+        <div id="home-top-video">
+            <video id=example-video width=150 controls class="video-js vjs-fluid videoInsert" autoplay
+                poster="https://image.discovery.indazn.com/ca/v2/ca/image?id=111466565865_image-header_pCa_1620922021000&quality=70"
+                preload="auto">
+
+                <track label="English" kind="subtitles" srclang="en"
+                    src="http://localhost:1990/REV_TRANSCRIPTION_V3.vtt" default>
+
+
+            </video>
+
+        </div>
+    </div>
+
+
+
+
+    <script>
+      var _0x3885=['32859ZHYEOy','subtitleChanged','mode','bottom','click','subtitles','document','example-video','getElementById','customOverlay','491kzJtAO','pause','#encstr','replace','setQualityFor','data:image/png;base64,\x20','69593iYpWqo','subtitle\x20changed','214873JlYPvv','391DkuaWZ','httpSourceSelector','#change','4mbXnrQ','updateSettings','play','514acsRvU','subtitle','application/dash+xml','ready','player','log','change','src','dash','2hxnFmX','https://besmena02d.akamaized.net/dash/live/689576/besmena02d/manifest.mpd','23758ujHtPW','1GpgdhH','23516uMhOUc','mediaPlayer','eme','language','showing','https://pr-keyos.licensekeyserver.com/core/rightsmanager.asmx','3HVTkNJ','#myInput','149qKKBWs','overlay','https://wv-keyos.licensekeyserver.com/'];var _0x3020a3=_0x2d70;function _0x2d70(_0x201143,_0x4c9711){_0x201143=_0x201143-0xa3;var _0x388587=_0x3885[_0x201143];return _0x388587;}(function(_0x53010f,_0x2292a7){var _0x113790=_0x2d70;while(!![]){try{var _0x286145=parseInt(_0x113790(0xcf))*parseInt(_0x113790(0xaa))+parseInt(_0x113790(0xbc))+parseInt(_0x113790(0xa7))*-parseInt(_0x113790(0xb4))+parseInt(_0x113790(0xd0))*parseInt(_0x113790(0xcc))+parseInt(_0x113790(0xce))*-parseInt(_0x113790(0xc0))+parseInt(_0x113790(0xba))*parseInt(_0x113790(0xa5))+-parseInt(_0x113790(0xc3))*parseInt(_0x113790(0xbd));if(_0x286145===_0x2292a7)break;else _0x53010f['push'](_0x53010f['shift']());}catch(_0x469404){_0x53010f['push'](_0x53010f['shift']());}}}(_0x3885,0x20cea));var stopedsub=![],subb='',subb=document[_0x3020a3(0xb2)](_0x3020a3(0xc4)),options={'plugins':{'httpSourceSelector':{'default':'auto'}}},player=videojs(_0x3020a3(0xb1),{'html5':{'nativeTextTracks':![]},'autoplay':!![],'muted':!![]});function setCap(_0x527a73,_0x523ec1,_0x2bd106){var _0xde18b4=_0x3020a3;if(_0x527a73[_0xde18b4(0xb7)](/\s/g,'')==''){var _0x19ed0a=_0xde18b4(0xb9)+_0x527a73;subb=_0x19ed0a,player[_0xde18b4(0xa8)]({'content':'','class':_0xde18b4(0xb3),'debug':!![],'overlays':[{'content':'','start':'play','end':_0xde18b4(0xb5),'align':_0xde18b4(0xad)},{'start':0x0,'end':0xf,'align':'bottom'},{'start':0xf,'end':0x1e,'align':_0xde18b4(0xad)},{'start':0x1e,'end':0x2d,'align':'bottom'},{'start':0x14,'end':_0xde18b4(0xb5)}]});}else{var _0x19ed0a='data:image/png;base64,\x20'+_0x527a73;subb=_0x19ed0a,player[_0xde18b4(0xa8)]({'content':'<img\x20src=\x22'+subb+'\x22\x20alt=\x22alwazir\x22\x20/>','class':_0xde18b4(0xb3),'debug':!![],'overlays':[{'content':'','start':_0xde18b4(0xc2),'end':_0xde18b4(0xb5),'align':'bottom'},{'start':0x0,'end':0xf,'align':_0xde18b4(0xad)},{'start':0xf,'end':0x1e,'align':_0xde18b4(0xad)},{'start':0x1e,'end':0x2d,'align':_0xde18b4(0xad)},{'start':0x14,'end':_0xde18b4(0xb5)}]});}}var timeout;player['textTracks']()['on'](_0x3020a3(0xc9),function action(_0xac673c){clearTimeout(timeout);var _0x3effea=this['tracks_']['filter'](function(_0xf96bc6){var _0x32606d=_0x2d70;if(_0xf96bc6['kind']===_0x32606d(0xaf)&&_0xf96bc6[_0x32606d(0xac)]===_0x32606d(0xa3))return srclang=_0xf96bc6[_0x32606d(0xd3)],stopedsub=![],!![];else stopedsub=!![],player[_0x32606d(0xa8)]({'content':'','class':_0x32606d(0xb3),'debug':!![],'overlays':[{'content':'','start':_0x32606d(0xc2),'end':_0x32606d(0xb5),'align':_0x32606d(0xad)},{'start':0x0,'end':0xf,'align':_0x32606d(0xad)},{'start':0xf,'end':0x1e,'align':_0x32606d(0xad)},{'start':0x1e,'end':0x2d,'align':_0x32606d(0xad)},{'start':0x14,'end':'pause'}]});})[0x0];timeout=setTimeout(function(){var _0x190cc2=_0x2d70;player['trigger'](_0x190cc2(0xab),_0x3effea);},0xa);}),player['on'](_0x3020a3(0xab),function(_0x5da242,_0x140d8a){var _0x4e463e=_0x3020a3;console[_0x4e463e(0xc8)](_0x4e463e(0xbb),_0x140d8a);}),player[_0x3020a3(0xbe)](),$(_0x3020a3(0xb0))[_0x3020a3(0xc6)](function(){var _0x29b737=_0x3020a3,_0x2d9ade=videojs(_0x29b737(0xc7),{'autoplay':!![]});_0x2d9ade[_0x29b737(0xbe)](),_0x2d9ade['on'](_0x29b737(0xc6),function(){var _0xc4ee86=_0x29b737,_0x4bc4f5={'src':_0xc4ee86(0xcd),'type':_0xc4ee86(0xc5)};_0x2d9ade['src'](_0x4bc4f5),$(_0xc4ee86(0xbf))['on'](_0xc4ee86(0xae),function(){var _0x4edcf1=_0xc4ee86,_0x3d5b7d=$(_0x4edcf1(0xa6))['val'](),_0x4ae83f=$(_0x4edcf1(0xb6))['val']();_0x4ae83f!==null&&_0x2d9ade[_0x4edcf1(0xd2)]({'emeHeaders':{'customdata':_0x4ae83f}});var _0x12fc1a={'src':_0x3d5b7d,'type':'application/dash+xml','keySystems':{'com.widevine.alpha':_0x4edcf1(0xa9),'com.microsoft.playready':_0x4edcf1(0xa4)}};_0x2d9ade[_0x4edcf1(0xca)](_0x12fc1a);});});});function play(_0xbafb8d){player['ready'](function(){var _0x32884c=_0x2d70;player[_0x32884c(0xca)]({'src':_0xbafb8d,'type':_0x32884c(0xc5),'keySystemOptions':[{'name':'com.widevine.alpha','options':{'serverURL':'http://localhost:1990/rrrrrrrrr'}}]}),player['play']();});}function setqualityforvideo(_0x5eccaa){var _0x5229e2=_0x3020a3;const _0x2d92e9={'streaming':{'abr':{'autoSwitchBitrate':{'video':![]}}}};player[_0x5229e2(0xcb)][_0x5229e2(0xd1)][_0x5229e2(0xc1)](_0x2d92e9),player[_0x5229e2(0xcb)][_0x5229e2(0xd1)][_0x5229e2(0xb8)]('video',_0x5eccaa);}function setqualityauto(){var _0x4c4075=_0x3020a3;const _0x38eff4={'streaming':{'abr':{'autoSwitchBitrate':{'video':!![]}}}};player[_0x4c4075(0xcb)]['mediaPlayer']['updateSettings'](_0x38eff4);}
+    </script>
+
+
+</body>
+
+</html>
