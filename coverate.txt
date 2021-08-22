@@ -26,8 +26,9 @@
     <script src="https://sahilkashyap64.github.io/dash-player-buydrm/dist/videojs-http-source-selector.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-eme@3.7.0/dist/videojs-contrib-eme.cjs.min.js"></script>
 
-    <script src="https://players.brightcove.net/videojs-overlay/2/videojs-overlay.min.js"></script>
-    <link href="https://players.brightcove.net/videojs-overlay/2/videojs-overlay.css" rel="stylesheet">
+
+
+  
     <title>Alwazir</title>
     <style>
         .video-js .vjs-menu-button-inline.vjs-slider-active,
@@ -375,18 +376,7 @@
             overflow: hidden;
         }
 
-        .video-js .customOverlay {
-            color: yellow;
-            background-color: transparent;
-             font-size: 12px;
-        }
-
-        .vjs-overlay.vjs-overlay-top.vjs-overlay-background {
-            width: 100 %;
-            margin: auto;
-            left: 0;
-            background: none;
-        }
+       
     </style>
 </head>
 
