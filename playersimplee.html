@@ -424,14 +424,14 @@
 
 <script>
     function getVideo() {
-        var video,
-            player,
-            url = 'http://localhost:1992/akamai/hd/manifest.mpd';
+       
 
         video = document.querySelector('video');
         player = dashjs.MediaPlayer().create();
         player.initialize(video, url, false);
     }
+  
+  
 </script>
 </body>
 
