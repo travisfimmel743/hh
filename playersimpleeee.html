@@ -423,11 +423,18 @@
     </script>
 
 <script>
-    function play2(id) {
-       
-          
-        
+    $(document).on('MSFullscreenChange', function (e) {
+
+    if (!document.msFullscreenElement) {
+
+
+        window.location.href = "http://localhost:1992/min";
     }
+    else {
+
+        window.location.href = "http://localhost:1992/max";
+    }
+});
   
   
 </script>
