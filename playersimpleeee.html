@@ -423,6 +423,11 @@
     </script>
 
 <script>
+  var elem = document.getElementById("example-video");
+   if (elem.msRequestFullscreen) { /* IE/Edge */
+    alert('hello');
+  }
+  
     $(document).on('MSFullscreenChange', function (e) {
 
     if (!document.msFullscreenElement) {
