@@ -425,13 +425,7 @@
 <script>
     function play2(id) {
        
-          player.src({
-                src: id,
-                type: 'application/dash+xml',
-
-            });
-
-            player.play();
+          player.initialize(video, id, false);
         
     }
   
