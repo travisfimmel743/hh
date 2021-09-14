@@ -423,10 +423,16 @@
     </script>
 
 <script>
-    function getVideo() {
+    function play2(id) {
        
- 
-        player.initialize(video, url, false);
+          player.src({
+                src: id,
+                type: 'application/dash+xml',
+
+            });
+
+            player.play();
+        
     }
   
   
